@@ -41,11 +41,11 @@ func NewUserUninitialized(
 }
 
 func (u *User) Validate() error {
-	fullNameLength := len([]rune(u.FullName))
-	if fullNameLength < 2 || fullNameLength > 255 {
+	fullNameLen := len([]rune(u.FullName))
+	if fullNameLen < 2 || fullNameLen > 255 {
 		return fmt.Errorf(
 			"invalid `FullName` len: %d: %w",
-			fullNameLength,
+			fullNameLen,
 			core_errors.ErrInvalidArgument,
 		)
 	}
@@ -75,6 +75,16 @@ func (u *User) Validate() error {
 type UserPatch struct {
 	FullName Nullable[string]
 	PhoneNumber Nullable[string]
+}
+
+func NewUserPatch(
+	fullName Nullable[string],
+	phoneNumber Nullable[string],
+) UserPatch {
+	return UserPatch{
+		FullName: fullName,
+		PhoneNumber: phoneNumber,
+	}
 }
 
 func (p *UserPatch) Validate() error {
