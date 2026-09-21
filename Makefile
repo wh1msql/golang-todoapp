@@ -13,7 +13,7 @@ env-cleanup:
 	@read -r -p "Danger! Risk of data loss. Clear all environment volume files? [y/N]: " confirm; \
 	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
 		docker compose down todoapp-postgres port-forwarder && \
-		sudo rm -rf /var/lib/todoapp-postgres && \
+		rm -rf /var/lib/todoapp-postgres && \
 		echo "Environment files have been cleared."; \
 	else \
 		echo "Environment cleanup cancelled."; \
@@ -40,7 +40,7 @@ migrate-create:
 migrate-remove:
 	@read -r -p "Danger! This will delete all migration files. Continue? [y/N]: " confirm; \
 	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
-		sudo rm -f migrations/*.sql; \
+		rm -f migrations/*.sql; \
 		echo "Migration files removed."; \
 	else \
 		echo "Cancelled."; \
@@ -62,6 +62,15 @@ migrate-up:
 
 migrate-down:
 	@make migrate-action action=down
+
+logs-cleanup:
+	@read -r -p "Danger! Risk of data loss. Clear all log files? [y/N]: " confirm; \
+	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
+		rm -rf ${PROJECT_ROOT}/out/logs && \
+		echo "Log files have been cleared."; \
+	else \
+		echo "Log files cleanup cancelled."; \
+	fi
 
 todoapp-run:
 	@export LOGGER_FOLDER=$(PROJECT_ROOT)/out/logs && \
