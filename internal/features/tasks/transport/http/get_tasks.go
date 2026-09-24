@@ -11,10 +11,10 @@ import (
 
 type GetTasksResponse []TaskDTOResponse
 
-func (h *TasksHTTPHandler) GetTasks(rw http.ResponseWriter, r *http.Request) {
+func (h *TasksHTTPHandler) GetTasks(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
-	responseHandler := core_http_response.NewHTTPResponseHandler(log, rw)
+	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	userID, limit, offset, err := getUserIDLimitOffsetQueryParams(r)
 	if err != nil {

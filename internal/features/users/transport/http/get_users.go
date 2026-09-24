@@ -11,10 +11,10 @@ import (
 
 type GetUsersResponse []UserDTOResponse
 
-func (h *UsersHTTPHandler) GetUsers(rw http.ResponseWriter, r *http.Request) {
+func (h *UsersHTTPHandler) GetUsers(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
-	responseHandler := core_http_response.NewHTTPResponseHandler(log, rw)
+	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	limit, offset, err := getLimitOffsetQueryParams(r)
 	if err != nil {
@@ -36,7 +36,7 @@ func (h *UsersHTTPHandler) GetUsers(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := GetUsersResponse(usersDTOsFromDomains(userDomains))
+	response := GetUsersResponse(userDTOsFromDomains(userDomains))
 
 	responseHandler.JSONResponse(response, http.StatusOK)
 }

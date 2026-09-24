@@ -8,10 +8,10 @@ import (
 	core_http_response "github.com/wh1msql/golang-todoapp/internal/core/transport/http/response"
 )
 
-func (h *UsersHTTPHandler) DeleteUser(rw http.ResponseWriter, r *http.Request) {
+func (h *UsersHTTPHandler) DeleteUser(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
-	responseHandler := core_http_response.NewHTTPResponseHandler(log, rw)
+	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	userID, err := core_http_request.GetIntPathValue(r, "id")
 	if err != nil {

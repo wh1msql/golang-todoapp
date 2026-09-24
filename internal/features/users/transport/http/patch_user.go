@@ -47,10 +47,10 @@ func (r *PatchUserRequest) Validate() error {
 
 type PatchUserResponse UserDTOResponse
 
-func (h *UsersHTTPHandler) PatchUser(rw http.ResponseWriter, r *http.Request) {
+func (h *UsersHTTPHandler) PatchUser(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
-	responseHandler := core_http_response.NewHTTPResponseHandler(log, rw)
+	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	userID, err := core_http_request.GetIntPathValue(r, "id")
 	if err != nil {

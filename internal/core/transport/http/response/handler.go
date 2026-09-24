@@ -13,7 +13,7 @@ import (
 
 type HTTPResponseHandler struct {
 	log *core_logger.Logger
-	rw  http.ResponseWriter
+	w  http.ResponseWriter
 }
 
 func NewHTTPResponseHandler(
@@ -22,7 +22,7 @@ func NewHTTPResponseHandler(
 ) *HTTPResponseHandler {
 	return &HTTPResponseHandler{
 		log: log,
-		rw:  rw,
+		w:  rw,
 	}
 }
 
@@ -30,15 +30,15 @@ func (h *HTTPResponseHandler) JSONResponse(
 	responseBody any,
 	statusCode int,
 ) {
-	h.rw.WriteHeader(statusCode)
+	h.w.WriteHeader(statusCode)
 
-	if err := json.NewEncoder(h.rw).Encode(responseBody); err != nil {
+	if err := json.NewEncoder(h.w).Encode(responseBody); err != nil {
 		h.log.Error("write HTTP response", zap.Error(err))
 	}
 }
 
 func (h *HTTPResponseHandler) NoContentResponse() {
-	h.rw.WriteHeader(http.StatusNoContent)
+	h.w.WriteHeader(http.StatusNoContent)
 }
 
 func (h *HTTPResponseHandler) ErrorResponse(err error, msg string) {

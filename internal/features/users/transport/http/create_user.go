@@ -16,10 +16,10 @@ type CreateUserRequest struct {
 
 type CreateUserResponse UserDTOResponse
 
-func (h *UsersHTTPHandler) CreateUser(rw http.ResponseWriter, r *http.Request) {
+func (h *UsersHTTPHandler) CreateUser(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
-	responseHandler := core_http_response.NewHTTPResponseHandler(log, rw)
+	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	log.Debug("invoke CreateUser handler")
 

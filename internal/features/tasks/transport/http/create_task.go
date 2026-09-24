@@ -17,10 +17,10 @@ type CreateTaskRequest struct {
 
 type CreateTaskResponse TaskDTOResponse
 
-func (h *TasksHTTPHandler) CreateTask(rw http.ResponseWriter, r *http.Request) {
+func (h *TasksHTTPHandler) CreateTask(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
-	responseHandler := core_http_response.NewHTTPResponseHandler(log, rw)
+	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	var request CreateTaskRequest
 	if err := core_http_request.DecodeAndValidateRequest(r, &request); err != nil {

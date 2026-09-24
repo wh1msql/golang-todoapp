@@ -18,10 +18,10 @@ type GetStatisticsResponse struct {
 	TasksAverageCompletionTime *string  `json:"tasks_average_completion_time"`
 }
 
-func (h *StatisticsHTTPHandler) GetStatistics(rw http.ResponseWriter, r *http.Request) {
+func (h *StatisticsHTTPHandler) GetStatistics(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
-	responseHandler := core_http_response.NewHTTPResponseHandler(log, rw)
+	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	userID, from, to, err := getUserIDFromToQueryParams(r)
 	if err != nil {

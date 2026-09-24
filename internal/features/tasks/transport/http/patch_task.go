@@ -49,10 +49,10 @@ func (r *PatchTaskRequest) Validate() error {
 
 type PatchTaskResponse TaskDTOResponse
 
-func (h *TasksHTTPHandler) PatchTask(rw http.ResponseWriter, r *http.Request) {
+func (h *TasksHTTPHandler) PatchTask(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	log := core_logger.FromContext(ctx)
-	responseHandler := core_http_response.NewHTTPResponseHandler(log, rw)
+	responseHandler := core_http_response.NewHTTPResponseHandler(log, w)
 
 	taskID, err := core_http_request.GetIntPathValue(r, "id")
 	if err != nil {
