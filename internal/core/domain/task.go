@@ -87,7 +87,7 @@ func (t *Task) Validate() error {
 		if descriptionLen < 1 || descriptionLen > 1000 {
 			return fmt.Errorf(
 				"invalid `Description` len: %d: %w",
-				titleLen,
+				descriptionLen,
 				core_errors.ErrInvalidArgument,
 			)
 		}
