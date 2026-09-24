@@ -13,16 +13,16 @@ import (
 
 type HTTPResponseHandler struct {
 	log *core_logger.Logger
-	w  http.ResponseWriter
+	w   http.ResponseWriter
 }
 
 func NewHTTPResponseHandler(
 	log *core_logger.Logger,
-	rw http.ResponseWriter,
+	w http.ResponseWriter,
 ) *HTTPResponseHandler {
 	return &HTTPResponseHandler{
 		log: log,
-		w:  rw,
+		w:   w,
 	}
 }
 
