@@ -7,22 +7,22 @@ import (
 	core_http_middleware "github.com/wh1msql/golang-todoapp/internal/core/transport/http/middleware"
 )
 
-type ApiVersion string
+type APIVersion string
 
-var (
-	ApiVersion1 = ApiVersion("v1")
-	ApiVersion2 = ApiVersion("v2")
-	ApiVersion3 = ApiVersion("v3")
+const (
+	APIVersion1 = APIVersion("v1")
+	APIVersion2 = APIVersion("v2")
+	APIVersion3 = APIVersion("v3")
 )
 
 type APIVersionRouter struct {
 	*http.ServeMux
-	apiVersion ApiVersion
+	apiVersion APIVersion
 	middleware []core_http_middleware.Middleware
 }
 
 func NewAPIVersionRouter(
-	apiVersion ApiVersion,
+	apiVersion APIVersion,
 	middleware ...core_http_middleware.Middleware,
 ) *APIVersionRouter {
 	return &APIVersionRouter{

@@ -2,7 +2,7 @@ package core_http_response
 
 import "net/http"
 
-var (
+const (
 	StatusCodeUninitialized = -1
 )
 

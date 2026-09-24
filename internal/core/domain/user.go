@@ -54,7 +54,7 @@ func (u *User) Validate() error {
 		phoneNumberLen := len([]rune(*u.PhoneNumber))
 		if phoneNumberLen < 10 || phoneNumberLen > 15 {
 			return fmt.Errorf(
-				"invalied `PhoneNumber` len: %d: %w",
+				"invalid `PhoneNumber` len: %d: %w",
 				phoneNumberLen,
 				core_errors.ErrInvalidArgument,
 			)

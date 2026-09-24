@@ -25,7 +25,7 @@ func (r *PatchUserRequest) Validate() error {
 
 		fullNameLen := len([]rune(*r.FullName.Value))
 		if fullNameLen < 2 || fullNameLen > 255 {
-			return fmt.Errorf("`FullName` must be between 2 and 255 symbols")
+			return fmt.Errorf("`FullName` must be between 2 and 255 characters")
 		}
 	}
 
@@ -33,11 +33,11 @@ func (r *PatchUserRequest) Validate() error {
 		if r.PhoneNumber.Value != nil {
 			phoneNumberLen := len([]rune(*r.PhoneNumber.Value))
 			if phoneNumberLen < 10 || phoneNumberLen > 15 {
-				return fmt.Errorf("`PhoneNumber` must be between 10 and 15 symbols")
+				return fmt.Errorf("`PhoneNumber` must be between 10 and 15 characters")
 			}
 
 			if !strings.HasPrefix(*r.PhoneNumber.Value, "+") {
-				return fmt.Errorf("`PhoneNumber` must startswith `+` symbol")
+				return fmt.Errorf("`PhoneNumber` must start with `+`")
 			}
 		}
 	}

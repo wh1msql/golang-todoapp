@@ -43,12 +43,12 @@ func (h *StatisticsHTTPHandler) GetStatistics(rw http.ResponseWriter, r *http.Re
 		return
 	}
 
-	response := toDTOFromDomain(statistics)
+	response := statisticsDTOFromDomain(statistics)
 
 	responseHandler.JSONResponse(response, http.StatusOK)
 }
 
-func toDTOFromDomain(statistics domain.Statistics) GetStatisticsResponse {
+func statisticsDTOFromDomain(statistics domain.Statistics) GetStatisticsResponse {
 	var avgTime *string
 	if statistics.TasksAverageCompletionTime != nil {
 		duration := statistics.TasksAverageCompletionTime.String()

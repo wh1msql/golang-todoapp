@@ -25,7 +25,7 @@ func (r *PatchTaskRequest) Validate() error {
 
 		titleLen := len([]rune(*r.Title.Value))
 		if titleLen < 1 || titleLen > 100 {
-			return fmt.Errorf("`Title` must be between 1 and 100 symbols")
+			return fmt.Errorf("`Title` must be between 1 and 100 characters")
 		}
 	}
 
@@ -33,7 +33,7 @@ func (r *PatchTaskRequest) Validate() error {
 		if r.Description.Value != nil {
 			descriptionLen := len([]rune(*r.Description.Value))
 			if descriptionLen < 1 || descriptionLen > 1000 {
-				return fmt.Errorf("`Description` must be between 1 and 1000 symbols")
+				return fmt.Errorf("`Description` must be between 1 and 1000 characters")
 			}
 		}
 	}

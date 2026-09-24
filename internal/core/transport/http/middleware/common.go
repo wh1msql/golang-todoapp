@@ -52,11 +52,11 @@ func Trace() Middleware {
 			log := core_logger.FromContext(ctx)
 			rw := core_http_response.NewResponseWriter(w)
 
-			before := time.Now()
+			startTime := time.Now()
 			log.Debug(
 				">>> incoming HTTP request",
 				zap.String("http_method", r.Method),
-				zap.Time("time", before.UTC()),
+				zap.Time("time", startTime.UTC()),
 			)
 
 			next.ServeHTTP(rw, r)
@@ -64,7 +64,7 @@ func Trace() Middleware {
 			log.Debug(
 				"done HTTP request <<<",
 				zap.Int("status_code", rw.GetStatusCode()),
-				zap.Duration("latency", time.Since(before)),
+				zap.Duration("latency", time.Since(startTime)),
 			)
 		})
 	}

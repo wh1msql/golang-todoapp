@@ -160,32 +160,32 @@ func (t *Task) ApplyPatch(patch TaskPatch) error {
 		return fmt.Errorf("validate task patch: %w", err)
 	}
 
-	tmp := *t
+	updatedTask := *t
 
 	if patch.Title.Set {
-		tmp.Title = *patch.Title.Value
+		updatedTask.Title = *patch.Title.Value
 	}
 
 	if patch.Description.Set {
-		tmp.Description = patch.Description.Value
+		updatedTask.Description = patch.Description.Value
 	}
 
 	if patch.Completed.Set {
-		tmp.Completed = *patch.Completed.Value
+		updatedTask.Completed = *patch.Completed.Value
 
-		if tmp.Completed {
+		if updatedTask.Completed {
 			completedAt := time.Now()
-			tmp.CompletedAt = &completedAt
+			updatedTask.CompletedAt = &completedAt
 		} else {
-			tmp.CompletedAt = nil
+			updatedTask.CompletedAt = nil
 		}
 	}
 
-	if err := tmp.Validate(); err != nil {
+	if err := updatedTask.Validate(); err != nil {
 		return fmt.Errorf("validate patched task: %w", err)
 	}
 
-	*t = tmp
+	*t = updatedTask
 
 	return nil
 }
