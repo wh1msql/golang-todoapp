@@ -10,9 +10,9 @@ import (
 )
 
 type CreateTaskRequest struct {
-	Title string `json:"title" validate:"required,min=1,max=100"`
-	Description *string `json:"description" validate:"omitempty,min=1,max=1000"`
-	AuthorUserID int `json:"author_user_id" validate:"required"`
+	Title        string  `json:"title" validate:"required,min=1,max=100"`
+	Description  *string `json:"description" validate:"omitempty,min=1,max=1000"`
+	AuthorUserID int     `json:"author_user_id" validate:"required"`
 }
 
 type CreateTaskResponse TaskDTOResponse

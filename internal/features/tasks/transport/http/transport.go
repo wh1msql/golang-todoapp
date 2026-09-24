@@ -51,28 +51,28 @@ func NewTasksHTTPHandler(tasksService TasksService) *TasksHTTPHandler {
 func (h *TasksHTTPHandler) Routes() []core_http_server.Route {
 	return []core_http_server.Route{
 		{
-			Method: http.MethodPost,
-			Path: "/tasks",
+			Method:  http.MethodPost,
+			Path:    "/tasks",
 			Handler: h.CreateTask,
 		},
 		{
-			Method: http.MethodGet,
-			Path: "/tasks",
+			Method:  http.MethodGet,
+			Path:    "/tasks",
 			Handler: h.GetTasks,
 		},
 		{
-			Method: http.MethodGet,
-			Path: "/tasks/{id}",
+			Method:  http.MethodGet,
+			Path:    "/tasks/{id}",
 			Handler: h.GetTask,
 		},
 		{
-			Method: http.MethodDelete,
-			Path: "/tasks/{id}",
+			Method:  http.MethodDelete,
+			Path:    "/tasks/{id}",
 			Handler: h.DeleteTask,
 		},
 		{
-			Method: http.MethodPatch,
-			Path: "/tasks/{id}",
+			Method:  http.MethodPatch,
+			Path:    "/tasks/{id}",
 			Handler: h.PatchTask,
 		},
 	}

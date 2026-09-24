@@ -12,9 +12,9 @@ import (
 )
 
 type HTTPServer struct {
-	mux *http.ServeMux
-	config Config
-	log *core_logger.Logger
+	mux        *http.ServeMux
+	config     Config
+	log        *core_logger.Logger
 	middleware []core_http_middleware.Middleware
 }
 
@@ -24,9 +24,9 @@ func NewHTTPServer(
 	middleware ...core_http_middleware.Middleware,
 ) *HTTPServer {
 	return &HTTPServer{
-		mux: http.NewServeMux(),
-		config: config,
-		log: log,
+		mux:        http.NewServeMux(),
+		config:     config,
+		log:        log,
 		middleware: middleware,
 	}
 }
@@ -46,7 +46,7 @@ func (s *HTTPServer) Run(ctx context.Context) error {
 	mux := core_http_middleware.ChainMiddleware(s.mux, s.middleware...)
 
 	server := &http.Server{
-		Addr: s.config.Addr,
+		Addr:    s.config.Addr,
 		Handler: mux,
 	}
 
@@ -58,7 +58,7 @@ func (s *HTTPServer) Run(ctx context.Context) error {
 		s.log.Warn("start HTTP server", zap.String("addr", s.config.Addr))
 
 		err := server.ListenAndServe()
-		
+
 		if !errors.Is(err, http.ErrServerClosed) {
 			ch <- err
 		}
@@ -80,7 +80,7 @@ func (s *HTTPServer) Run(ctx context.Context) error {
 
 		if err := server.Shutdown(shutdownCtx); err != nil {
 			_ = server.Close()
-			
+
 			return fmt.Errorf("shutdown HTTP server: %w", err)
 		}
 

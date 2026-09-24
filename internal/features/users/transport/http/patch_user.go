@@ -13,7 +13,7 @@ import (
 )
 
 type PatchUserRequest struct {
-	FullName core_http_types.Nullable[string] `json:"full_name"`
+	FullName    core_http_types.Nullable[string] `json:"full_name"`
 	PhoneNumber core_http_types.Nullable[string] `json:"phone_number"`
 }
 
@@ -68,7 +68,7 @@ func (h *UsersHTTPHandler) PatchUser(rw http.ResponseWriter, r *http.Request) {
 			err,
 			"failed to decode and validate HTTP request",
 		)
-		
+
 		return
 	}
 

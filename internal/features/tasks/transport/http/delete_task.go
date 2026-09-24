@@ -19,7 +19,7 @@ func (h *TasksHTTPHandler) DeleteTask(rw http.ResponseWriter, r *http.Request) {
 			err,
 			"failed to get taskID path value",
 		)
-		
+
 		return
 	}
 

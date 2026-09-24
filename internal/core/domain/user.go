@@ -8,9 +8,9 @@ import (
 )
 
 type User struct {
-	ID int
-	Version int
-	FullName string
+	ID          int
+	Version     int
+	FullName    string
 	PhoneNumber *string
 }
 
@@ -21,9 +21,9 @@ func NewUser(
 	phoneNumber *string,
 ) User {
 	return User{
-		ID: id,
-		Version: version,
-		FullName: fullName,
+		ID:          id,
+		Version:     version,
+		FullName:    fullName,
 		PhoneNumber: phoneNumber,
 	}
 }
@@ -73,7 +73,7 @@ func (u *User) Validate() error {
 }
 
 type UserPatch struct {
-	FullName Nullable[string]
+	FullName    Nullable[string]
 	PhoneNumber Nullable[string]
 }
 
@@ -82,7 +82,7 @@ func NewUserPatch(
 	phoneNumber Nullable[string],
 ) UserPatch {
 	return UserPatch{
-		FullName: fullName,
+		FullName:    fullName,
 		PhoneNumber: phoneNumber,
 	}
 }

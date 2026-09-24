@@ -26,7 +26,7 @@ func NewAPIVersionRouter(
 	middleware ...core_http_middleware.Middleware,
 ) *APIVersionRouter {
 	return &APIVersionRouter{
-		ServeMux: http.NewServeMux(),
+		ServeMux:   http.NewServeMux(),
 		apiVersion: apiVersion,
 		middleware: middleware,
 	}

@@ -12,10 +12,10 @@ import (
 )
 
 type GetStatisticsResponse struct {
-	TasksCreated int `json:"tasks_created"`
-	TasksCompleted int `json:"tasks_completed"`
-	TasksCompletedRate *float64 `json:"tasks_completed_rate"`
-	TasksAverageCompletionTime *string `json:"tasks_average_completion_time"`
+	TasksCreated               int      `json:"tasks_created"`
+	TasksCompleted             int      `json:"tasks_completed"`
+	TasksCompletedRate         *float64 `json:"tasks_completed_rate"`
+	TasksAverageCompletionTime *string  `json:"tasks_average_completion_time"`
 }
 
 func (h *StatisticsHTTPHandler) GetStatistics(rw http.ResponseWriter, r *http.Request) {
@@ -56,9 +56,9 @@ func toDTOFromDomain(statistics domain.Statistics) GetStatisticsResponse {
 	}
 
 	return GetStatisticsResponse{
-		TasksCreated: statistics.TasksCreated,
-		TasksCompleted: statistics.TasksCompleted,
-		TasksCompletedRate: statistics.TasksCompletedRate,
+		TasksCreated:               statistics.TasksCreated,
+		TasksCompleted:             statistics.TasksCompleted,
+		TasksCompletedRate:         statistics.TasksCompletedRate,
 		TasksAverageCompletionTime: avgTime,
 	}
 }
@@ -66,8 +66,8 @@ func toDTOFromDomain(statistics domain.Statistics) GetStatisticsResponse {
 func getUserIDFromToQueryParams(r *http.Request) (*int, *time.Time, *time.Time, error) {
 	const (
 		userIDQueryParamKey = "user_id"
-		fromQueryParamKey = "from"
-		toQueryParamKey = "to"
+		fromQueryParamKey   = "from"
+		toQueryParamKey     = "to"
 	)
 
 	userID, err := core_http_request.GetIntQueryParam(r, userIDQueryParamKey)

@@ -7,9 +7,9 @@ import (
 )
 
 type Route struct {
-	Method string
-	Path string
-	Handler http.HandlerFunc
+	Method     string
+	Path       string
+	Handler    http.HandlerFunc
 	Middleware []core_http_middleware.Middleware
 }
 

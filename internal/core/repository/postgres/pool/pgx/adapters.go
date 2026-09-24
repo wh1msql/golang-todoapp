@@ -40,15 +40,15 @@ func mapErrors(err error) error {
 	}
 
 	var pgErr *pgconn.PgError
-		if errors.As(err, &pgErr) {
-			if pgErr.Code == pgxViolatesForeignKeyErrorCode {
-				return fmt.Errorf(
-					"%v: %w",
-					err,
-					core_postgres_pool.ErrViolatesForeignKey,
-				)
-			}
+	if errors.As(err, &pgErr) {
+		if pgErr.Code == pgxViolatesForeignKeyErrorCode {
+			return fmt.Errorf(
+				"%v: %w",
+				err,
+				core_postgres_pool.ErrViolatesForeignKey,
+			)
 		}
+	}
 
 	return fmt.Errorf(
 		"%v: %w",

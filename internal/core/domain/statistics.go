@@ -3,9 +3,9 @@ package domain
 import "time"
 
 type Statistics struct {
-	TasksCreated int
-	TasksCompleted int
-	TasksCompletedRate *float64
+	TasksCreated               int
+	TasksCompleted             int
+	TasksCompletedRate         *float64
 	TasksAverageCompletionTime *time.Duration
 }
 
@@ -16,9 +16,9 @@ func NewStatistics(
 	tasksAverageCompletionTime *time.Duration,
 ) Statistics {
 	return Statistics{
-		TasksCreated: tasksCreated,
-		TasksCompleted: tasksCompleted,
-		TasksCompletedRate: tasksCompletedRate,
+		TasksCreated:               tasksCreated,
+		TasksCompleted:             tasksCompleted,
+		TasksCompletedRate:         tasksCompletedRate,
 		TasksAverageCompletionTime: tasksAverageCompletionTime,
 	}
 }

@@ -8,13 +8,13 @@ import (
 )
 
 type Task struct {
-	ID int
-	Version int
-	Title string
-	Description *string
-	Completed bool
-	CreatedAt time.Time
-	CompletedAt *time.Time
+	ID           int
+	Version      int
+	Title        string
+	Description  *string
+	Completed    bool
+	CreatedAt    time.Time
+	CompletedAt  *time.Time
 	AuthorUserID int
 }
 
@@ -29,14 +29,13 @@ func NewTask(
 	authorUserID int,
 ) Task {
 	return Task{
-		ID: id,
-		Version: version,
-
-		Title: title,
-		Description: description,
-		Completed: completed,
-		CreatedAt: createdAt,
-		CompletedAt: completedAt,
+		ID:           id,
+		Version:      version,
+		Title:        title,
+		Description:  description,
+		Completed:    completed,
+		CreatedAt:    createdAt,
+		CompletedAt:  completedAt,
 		AuthorUserID: authorUserID,
 	}
 }
@@ -105,9 +104,9 @@ func (t *Task) Validate() error {
 			return fmt.Errorf(
 				"`CompletedAt` can't be before `CreatedAt`: %w",
 				core_errors.ErrInvalidArgument,
-		)
-	}
-	
+			)
+		}
+
 	} else {
 		if t.CompletedAt != nil {
 			return fmt.Errorf(
@@ -121,9 +120,9 @@ func (t *Task) Validate() error {
 }
 
 type TaskPatch struct {
-	Title Nullable[string]
+	Title       Nullable[string]
 	Description Nullable[string]
-	Completed Nullable[bool]
+	Completed   Nullable[bool]
 }
 
 func NewTaskPatch(
@@ -132,9 +131,9 @@ func NewTaskPatch(
 	completed Nullable[bool],
 ) TaskPatch {
 	return TaskPatch{
-		Title: title,
+		Title:       title,
 		Description: description,
-		Completed: completed,
+		Completed:   completed,
 	}
 }
 
@@ -162,7 +161,7 @@ func (t *Task) ApplyPatch(patch TaskPatch) error {
 	}
 
 	tmp := *t
-	
+
 	if patch.Title.Set {
 		tmp.Title = *patch.Title.Value
 	}

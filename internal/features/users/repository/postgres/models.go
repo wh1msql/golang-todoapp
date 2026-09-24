@@ -3,9 +3,9 @@ package users_postgres_repository
 import "github.com/wh1msql/golang-todoapp/internal/core/domain"
 
 type UserModel struct {
-	ID int
-	Version int
-	FullName string
+	ID          int
+	Version     int
+	FullName    string
 	PhoneNumber *string
 }
 

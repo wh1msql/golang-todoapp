@@ -44,7 +44,7 @@ func (h *TasksHTTPHandler) GetTasks(rw http.ResponseWriter, r *http.Request) {
 func getUserIDLimitOffsetQueryParams(r *http.Request) (*int, *int, *int, error) {
 	const (
 		userIDQueryParamKey = "user_id"
-		limitQueryParamKey = "limit"
+		limitQueryParamKey  = "limit"
 		offsetQueryParamKey = "offset"
 	)
 

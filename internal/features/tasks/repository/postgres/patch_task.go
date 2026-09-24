@@ -75,6 +75,6 @@ func (r *TasksRepository) PatchTask(
 	}
 
 	taskDomain := taskDomainFromModel(taskModel)
-	
+
 	return taskDomain, nil
 }
